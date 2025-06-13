@@ -1,23 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import WordleBoard from './components/wordle/WordleBoard';
+import { WordleProvider } from './components/wordle/context/WordleContext.context';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <WordleProvider>
+        <Routes>
+          <Route path="*" element={<WordleBoard />} />
+        </Routes>
+      </WordleProvider>
     </div>
   );
 }
