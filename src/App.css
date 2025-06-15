@@ -18,14 +18,15 @@ h1{
   align-items: center;
   justify-content: center;
   border-radius: 10px;
+  padding: 0 2vw;
   height: 4vw;
 }
 
 .tile{
   border: 2.5px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  width: 4vw;
-  height: 4vw;
+  width: 3.5vw;
+  height: 3.5vw;
   font-weight: 700;
   display: flex;
   justify-content: center;
@@ -38,7 +39,7 @@ h1{
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 0.75vw;
+  gap: 0.5vw;
 }
 
 .wordle-board{
@@ -48,8 +49,8 @@ h1{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6vw 0;
-  gap: 0.75vw;
+  padding: 5vw 0;
+  gap: 0.5vw;
   position: relative;
 }
 
@@ -63,8 +64,9 @@ h1{
   width: 40vw;
   height: auto;
   font-weight: 900;
-  padding: 1vw 0;
+  padding: 1.5vw 0;
   border-radius: 10px;
+  font-size: 1.2rem;
 }
 
 .game-over-div button{
@@ -84,8 +86,38 @@ h1{
 .game-over-div button:hover{
   background-color: brown;
   color: white;
+  scale: 1.1;
+}
+
+.App > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .message{
   text-decoration: dashed;
+}
+
+.keyboard{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 60%;
+  gap: 0.5vw;
+}
+
+.letter-tile{
+  width: 3vw;
+  height: 3.5vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 10px;
 }

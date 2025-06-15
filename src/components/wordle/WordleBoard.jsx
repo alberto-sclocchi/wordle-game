@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import WordleContext from './context/WordleContext.context'
 import axios from 'axios';
 import { Words } from './model/Words.model';
+import { Alphabet } from './model/Alphabet.model'
 import WordleLine from './pages/WordleLine';
+import Keyboard from './Keyboard';
 
 export default function WordleBoard() {
 
-  const { getSolution, solution, MAX_GUESS_LETTERS} = useContext(WordleContext);
+  const { getSolution, solution, MAX_GUESS_LETTERS, keyboard, setKeyboard} = useContext(WordleContext);
   const [ guesses, setGuesses ] = useState(Array(6).fill(null));
   const [ currentGuess, setCurrentGuess ] = useState("")
   const [index, setIndex ] = useState(0);
@@ -44,6 +46,16 @@ export default function WordleBoard() {
           setMessage("YOU WON!!!");
           setIsGameOver(true);
         }
+        
+        setKeyboard((prevState) => {
+          return prevState.map((letterObj) => {
+            const i = currentGuess.indexOf(letterObj.letter);
+            if (i === -1) return letterObj;
+            if (solution[i] === letterObj.letter) return { ...letterObj, backgroundColor: "#6aa964" };
+            if (solution.includes(letterObj.letter)) return { ...letterObj, backgroundColor: "#c9b458" };
+            return { ...letterObj, backgroundColor: "#787c7e" };
+          })
+        })
 
         setIndex(prevState => prevState + 1);
         setCurrentGuess("");
@@ -69,6 +81,7 @@ export default function WordleBoard() {
     setGuesses(Array(6).fill(null));
     setIndex(0);
     setIsGameOver(false);
+    setKeyboard(Alphabet.map(letter => ({ letter, backgroundColor: "#d3d6da" })));
     getSolution();
   }
   return (
@@ -81,10 +94,15 @@ export default function WordleBoard() {
             ))
           }
         </div>
+        <div className='keyboard'>
+          {
+            keyboard.map((letter, i) => <Keyboard {...letter} key={i}/>)
+          }
+        </div>
         { isGameOver &&
           <div className='game-over-div'>
             <p className='message'>{message}</p>
-            <p>CLICK IF YOU WANT TO PLAY AGAIN</p>
+            <p>THE SOLUTION WAS {solution} :)</p>
             <button onClick={handleClick}>Play Again</button>
           </div>
         }

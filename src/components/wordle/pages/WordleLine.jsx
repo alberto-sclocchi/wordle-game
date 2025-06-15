@@ -3,7 +3,7 @@ import WordleBoard from '../WordleBoard';
 import WordleContext from '../context/WordleContext.context';
 
 export default function WordleLine({guess}) {
-  const { MAX_GUESS_LETTERS, solution } = useContext(WordleContext)
+  const { MAX_GUESS_LETTERS, solution} = useContext(WordleContext)
   const tiles = [];
 
 
@@ -28,6 +28,7 @@ export default function WordleLine({guess}) {
         } else if (char !== "") {
             backgroundColor = "#787c7e";
         }
+        
     } else {
         backgroundColor="white";
         color="black";
