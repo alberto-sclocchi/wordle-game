@@ -62,10 +62,15 @@ export default function WordleBoard() {
   }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution])
 
 
-
+  const handleClick = () => {
+    setGuesses(Array(6).fill(null));
+    setIndex(0);
+    setIsGameOver(false);
+    getSolution();
+  }
   return (
     <div>
-        <h1>Wordle Board</h1>
+        <h1>Wordle LookAlike</h1>
         {solution}
         <div className="wordle-board">
           {
@@ -79,6 +84,7 @@ export default function WordleBoard() {
             <p key={i}>{guess}</p>
           ))
         }
+        {isGameOver && <button onClick={handleClick}>Play Again</button>}
     </div>
   )
 }
