@@ -17,22 +17,23 @@ export default function WordleLine({guess}) {
     }
 
     let backgroundColor;
+    let color;
 
     if (guess.guessed && guess.guess){
+        color = "white";
         if(char === solution[i]){
-            backgroundColor = "green";
+            backgroundColor = "#6aa964";
         } else if (solution.includes(char) && char !== ""){
-            backgroundColor = "yellow";
+            backgroundColor = "#c9b458";
         } else if (char !== "") {
-            backgroundColor = "red";
-        } else {
-            backgroundColor="grey"
+            backgroundColor = "#787c7e";
         }
     } else {
-        backgroundColor="white"
+        backgroundColor="white";
+        color="black";
     }
 
-    tiles.push(<div className='tile' style={{backgroundColor: backgroundColor}} key={i}>{char}</div>)
+    tiles.push(<div className='tile' style={{backgroundColor: backgroundColor, color: color}} key={i}>{char}</div>)
   }
 
   return (
