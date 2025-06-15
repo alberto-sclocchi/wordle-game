@@ -34,10 +34,10 @@ export default function WordleLine({guess}) {
         color="black";
     }
 
-    tiles.push(<div className='tile' style={{backgroundColor: backgroundColor, color: color}} key={i}>{char}</div>)
+    tiles.push(<div className="tile" style={{backgroundColor: backgroundColor, color: color}} key={i}>{char}</div>)
   }
 
   return (
-    <div className='tiles'>{tiles}</div>
+    <div className={`tiles ${guess.error && "shake-effect"}`}>{tiles}</div>
   )
 }

@@ -121,3 +121,16 @@ h1{
   font-weight: 700;
   border-radius: 10px;
 }
+
+.shake-effect{
+  animation: shakeEffect 0.5s linear;
+}
+
+@keyframes shakeEffect {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-8px); }
+  80% { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}

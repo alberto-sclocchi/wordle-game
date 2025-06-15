@@ -14,6 +14,7 @@ export default function WordleBoard() {
   const [index, setIndex ] = useState(0);
   const [ isGameOver, setIsGameOver ] = useState(false);
   const [ message, setMessage ] = useState("");
+  const [ error, setError ] = useState(false);
 
   useEffect(() => {
     getSolution()
@@ -31,6 +32,20 @@ export default function WordleBoard() {
       if(event.key === "Backspace"){
         setCurrentGuess((prevState) => prevState.slice(0, prevState.length - 1))
       } else if (event.key === "Enter" && currentGuess.length === MAX_GUESS_LETTERS){
+        
+        const isItAWord = Words.includes(currentGuess);
+        
+        if(!isItAWord){
+          setError(true);
+          console.log("Word does not exist");
+
+          setTimeout(() => {
+            setError(false);
+          }, 500);
+
+          return;
+        }
+        
         setGuesses((prevGuesses) => {
           const newGuesses = [...prevGuesses];
           newGuesses[index] = currentGuess;
@@ -90,7 +105,7 @@ export default function WordleBoard() {
         <div className="wordle-board">
           {
             guesses.map((guess, i) => (            
-              <WordleLine guess={i === index ? {currentGuess, guessed: false} : {guess, guessed: true}} key={i}/>
+              <WordleLine guess={i === index ? {currentGuess, guessed: false, error: error} : {guess, guessed: true}} key={i}/>
             ))
           }
         </div>
