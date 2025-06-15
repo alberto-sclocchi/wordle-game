@@ -11,6 +11,7 @@ export default function WordleBoard() {
   const [ currentGuess, setCurrentGuess ] = useState("")
   const [index, setIndex ] = useState(0);
   const [ isGameOver, setIsGameOver ] = useState(false);
+  const [ message, setMessage ] = useState("");
 
   useEffect(() => {
     getSolution()
@@ -35,10 +36,12 @@ export default function WordleBoard() {
         })
 
         if (index === 5){
+          setMessage("BETTER LUCK NEXT TIME...")
           setIsGameOver(true);
         }
 
         if(currentGuess === solution){
+          setMessage("YOU WON!!!");
           setIsGameOver(true);
         }
 
@@ -79,12 +82,13 @@ export default function WordleBoard() {
             ))
           }
         </div>
-        {
-          guesses.map((guess, i) => (
-            <p key={i}>{guess}</p>
-          ))
+        { isGameOver &&
+          <div className='game-over-div'>
+            <p className='message'>{message}</p>
+            <p>CLICK IF YOU WANT TO PLAY AGAIN</p>
+            <button onClick={handleClick}>Play Again</button>
+          </div>
         }
-        {isGameOver && <button onClick={handleClick}>Play Again</button>}
     </div>
   )
 }
