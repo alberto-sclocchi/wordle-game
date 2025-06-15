@@ -9,7 +9,8 @@ export default function WordleBoard() {
   const { getSolution, solution, MAX_GUESS_LETTERS} = useContext(WordleContext);
   const [ guesses, setGuesses ] = useState(Array(6).fill(null));
   const [ currentGuess, setCurrentGuess ] = useState("")
-  const [index, setIndex ] = useState(0)
+  const [index, setIndex ] = useState(0);
+  const [ isGameOver, setIsGameOver ] = useState(false);
 
   useEffect(() => {
     getSolution()
@@ -18,10 +19,12 @@ export default function WordleBoard() {
   useEffect(() => {
     console.log(currentGuess, currentGuess.length)
 
+    if(isGameOver){
+      console.log("Game is over!!!", isGameOver);
+      return;
+    }
+
     const handleKeyDown = (event) => {
-
-      const isGameOver = index === 5;
-
       if(event.key === "Backspace"){
         setCurrentGuess((prevState) => prevState.slice(0, prevState.length - 1))
       } else if (event.key === "Enter" && currentGuess.length === MAX_GUESS_LETTERS){
@@ -30,13 +33,17 @@ export default function WordleBoard() {
           newGuesses[index] = currentGuess;
           return newGuesses;
         })
+
+        if (index === 5){
+          setIsGameOver(true);
+        }
+
+        if(currentGuess === solution){
+          setIsGameOver(true);
+        }
+
         setIndex(prevState => prevState + 1);
         setCurrentGuess("");
-
-        if(isGameOver){
-          console.log("Game is over!!!", isGameOver);
-          return;
-        }
 
       } else if (/^[a-zA-Z]$/.test(event.key) && currentGuess.length < MAX_GUESS_LETTERS && index < 6){
         console.log(currentGuess, currentGuess.length)
@@ -52,7 +59,7 @@ export default function WordleBoard() {
     return () => window.removeEventListener("keydown", handleKeyDown);
 
 
-  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses])
+  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution])
 
 
 
@@ -63,7 +70,7 @@ export default function WordleBoard() {
         <div className="wordle-board">
           {
             guesses.map((guess, i) => (            
-              <WordleLine guess={i === index ? currentGuess : guess} key={i}/>
+              <WordleLine guess={i === index ? {currentGuess, guessed: false} : {guess, guessed: true}} key={i}/>
             ))
           }
         </div>
