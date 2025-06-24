@@ -99,6 +99,7 @@ export default function WordleBoard() {
     setKeyboard(Alphabet.map(letter => ({ letter, backgroundColor: "#d3d6da" })));
     getSolution();
   }
+  
   return (
     <div>
         <h1>Wordle LookAlike</h1>
