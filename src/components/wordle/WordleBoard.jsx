@@ -17,7 +17,7 @@ export default function WordleBoard() {
 
   useEffect(() => {
     getSolution()
-  }, [getSolution])
+  }, [])
 
   useEffect(() => {
     console.log(currentGuess, currentGuess.length)
