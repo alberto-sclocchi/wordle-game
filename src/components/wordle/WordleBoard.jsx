@@ -102,7 +102,7 @@ export default function WordleBoard() {
   
   return (
     <div>
-        <h1>Wordle LookAlike</h1>
+        <h1>WordleLookAlike</h1>
         <div className="wordle-board">
           {
             guesses.map((guess, i) => (            
