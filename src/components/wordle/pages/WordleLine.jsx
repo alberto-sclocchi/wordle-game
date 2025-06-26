@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import WordleBoard from '../WordleBoard';
 import WordleContext from '../context/WordleContext.context';
 
 export default function WordleLine({guess}) {

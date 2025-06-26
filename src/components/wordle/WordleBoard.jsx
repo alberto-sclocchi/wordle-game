@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import WordleContext from './context/WordleContext.context'
-import axios from 'axios';
 import { Words } from './model/Words.model';
 import { Alphabet } from './model/Alphabet.model'
 import WordleLine from './pages/WordleLine';
@@ -18,7 +17,7 @@ export default function WordleBoard() {
 
   useEffect(() => {
     getSolution()
-  }, [])
+  }, [getSolution])
 
   useEffect(() => {
     console.log(currentGuess, currentGuess.length)
@@ -89,7 +88,7 @@ export default function WordleBoard() {
     return () => window.removeEventListener("keydown", handleKeyDown);
 
 
-  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution])
+  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution, setKeyboard, MAX_GUESS_LETTERS])
 
 
   const handleClick = () => {
