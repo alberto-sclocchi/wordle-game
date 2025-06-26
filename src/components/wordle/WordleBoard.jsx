@@ -88,7 +88,7 @@ export default function WordleBoard() {
     return () => window.removeEventListener("keydown", handleKeyDown);
 
 
-  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution, setKeyboard, MAX_GUESS_LETTERS])
+  }, [currentGuess, setCurrentGuess, setGuesses, setIndex, index, guesses, solution, setKeyboard, MAX_GUESS_LETTERS, isGameOver])
 
 
   const handleClick = () => {
