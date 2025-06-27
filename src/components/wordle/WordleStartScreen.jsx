@@ -1,6 +1,4 @@
-import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import WordleContext from './context/WordleContext.context';
 
 export default function WordleStartScreen() {
     
