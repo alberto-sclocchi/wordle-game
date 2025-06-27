@@ -17,6 +17,7 @@ export default function WordleBoard() {
 
   useEffect(() => {
     getSolution();
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
