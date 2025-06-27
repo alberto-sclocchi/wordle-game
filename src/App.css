@@ -71,6 +71,7 @@ h1{
 
 .game-over-div button{
   width: 10vw;
+  margin: 1vw;
   font-size: 1.1rem;
   text-transform: uppercase;
   border-radius: 10px;
@@ -80,13 +81,19 @@ h1{
   color: saddlebrown;
   font-weight: 900;
   background-color: white;
-  transition: all 0.5s ease-in-out;
+  border: 1px solid white;
+  transition: 
+    scale 0.5s ease-in-out,
+    background-color 0.5s ease-in-out,
+    color 0.5s ease-in-out;
 }
 
 .game-over-div button:hover{
-  background-color: brown;
+  background-color: saddlebrown;
+  border: 1px solid white;
   color: white;
   scale: 1.1;
+
 }
 
 .App > div {

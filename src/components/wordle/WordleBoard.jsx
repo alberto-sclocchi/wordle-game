@@ -102,7 +102,6 @@ export default function WordleBoard() {
   
   return (
     <div>
-        {solution}
         <h1>WordleLookAlike</h1>
         <div className="wordle-board">
           {
