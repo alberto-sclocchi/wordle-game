@@ -16,6 +16,10 @@ export default function WordleBoard() {
   const [ error, setError ] = useState(false);
 
   useEffect(() => {
+    getSolution();
+  }, [])
+
+  useEffect(() => {
     console.log(currentGuess, currentGuess.length)
 
     if(isGameOver){
